@@ -28,5 +28,15 @@ namespace insightflow_workspace_service.src.mappers
                 CreatedAt = DateTime.UtcNow
             };
         }
+        public static GetWorkspaceDTO ToGetWorkspaceDTO(Workspace workspace)
+        {
+            return new GetWorkspaceDTO
+            {
+                Name = workspace.Name,
+                Url = workspace.ImageUrl,
+                Users = workspace.Users,
+                CreatedAt = workspace.CreatedAt
+            };
+        }
     }
 }
