@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "DyjOt4wApnI=",
+  "dgSpecHash": "D+2CkHQqcko=",
   "success": true,
   "projectFilePath": "C:\\Users\\Alberto\\Desktop\\informatica\\Taller 3 arqui\\insightflow-workspace-service\\insightflow-workspace-service.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Alberto\\.nuget\\packages\\bogus\\35.6.5\\bogus.35.6.5.nupkg.sha512",
     "C:\\Users\\Alberto\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.8\\microsoft.aspnetcore.openapi.9.0.8.nupkg.sha512",
     "C:\\Users\\Alberto\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
   ],
