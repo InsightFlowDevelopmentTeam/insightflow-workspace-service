@@ -26,7 +26,7 @@ namespace insightflow_workspace_service.src.controllers
             {
                 return BadRequest("Workspace creation failed.");
             }
-            return Ok("Workspace created successfully.");
+            return Ok(createWorkspaceDTO);
         }
         [HttpGet("")]
         public async Task<IActionResult> GetAllWorkspacesByUser([FromQuery] Guid userId)
@@ -39,6 +39,26 @@ namespace insightflow_workspace_service.src.controllers
         {
             var workspaces = await _workspaceRepository.GetWorkspaceByIdAsync(id);
             return Ok(workspaces);
+        }
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateWorkspace([FromRoute] Guid id, [FromForm] UpdateWorkspaceDTO updateWorkspaceDTO)
+        {
+            var result = await _workspaceRepository.UpdateWorkspaceAsync(id, updateWorkspaceDTO);
+            if (!result)
+            {
+                return BadRequest("Workspace update failed.");
+            }
+            return Ok(updateWorkspaceDTO);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteWorkspace([FromRoute] Guid id)
+        {
+            var result = await _workspaceRepository.DeleteWorkspaceAsync(id);
+            if (!result)
+            {
+                return BadRequest("Workspace deletion failed.");
+            }
+            return Ok();
         }
         // solo debug
         [HttpGet("all")]

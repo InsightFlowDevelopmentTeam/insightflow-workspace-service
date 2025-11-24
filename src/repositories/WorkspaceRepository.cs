@@ -57,6 +57,34 @@ namespace insightflow_workspace_service.src.repositories
             var getWorkspaceDTO = WorkspaceMapper.ToGetWorkspaceDTO(workspace);
             return getWorkspaceDTO;
         }
+        public Task<bool> UpdateWorkspaceAsync(Guid workspaceId, UpdateWorkspaceDTO updateWorkspaceDTO)
+        {
+            if (workspaces.Find(w => w.Id == workspaceId) == null || workspaces.Find(W => W.Id == workspaceId) == null)
+            {
+                return Task.FromResult(false);
+            }
+            if (workspaces.Find(w => w.Name == updateWorkspaceDTO.Name) != null)
+            {
+                return Task.FromResult(false);
+            }
+            var url = workspaces.Find(w => w.Id == workspaceId)!.ImageUrl;
+            if (updateWorkspaceDTO.Image != null)
+            {
+                var uploadResult = _cloudinaryService.UploadImageAsync(updateWorkspaceDTO.Image!).Result;
+                if (uploadResult == null)
+                {
+                    return Task.FromResult(false);
+                }
+                url = uploadResult.Url.ToString();
+            }
+            workspaces.Find(w => w.Id == workspaceId)!.Name = updateWorkspaceDTO.Name;
+            workspaces.Find(w => w.Id == workspaceId)!.ImageUrl = url;
+            return Task.FromResult(true);
+        }
+        public Task<bool> DeleteWorkspaceAsync(Guid workspaceId)
+        {
+            throw new NotImplementedException();
+        }
         // solo debug
         public Task<IEnumerable<Workspace>> GetAllWorkspacesAsync()
         {
