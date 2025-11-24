@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[35.6.5, )"
             },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.8, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.8, )"
