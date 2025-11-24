@@ -1,3 +1,4 @@
+using System.Collections;
 using CloudinaryDotNet;
 using insightflow_workspace_service.src.data;
 using insightflow_workspace_service.src.dtos;
@@ -30,6 +31,21 @@ namespace insightflow_workspace_service.src.repositories
             var newWorkspace = WorkspaceMapper.ToWorkspace(createWorkspaceDTO, uploadResult.Url.ToString());
             workspaces.Add(newWorkspace);
             return Task.FromResult(true);
+        }
+        public Task<IEnumerable<Workspace>> GetAllWorkspacesByUserAsync(Guid userId)
+        {
+            var userWorkspaces = new List<Workspace>();
+            foreach (var workspace in workspaces)
+            {
+                foreach (var user in workspace.Users)
+                {
+                    if (userId == user.Id)
+                    {
+                        userWorkspaces.Add(workspace);
+                    }
+                }
+            }
+            return Task.FromResult(userWorkspaces.AsEnumerable());
         }
         public Task<IEnumerable<Workspace>> GetAllWorkspacesAsync()
         {

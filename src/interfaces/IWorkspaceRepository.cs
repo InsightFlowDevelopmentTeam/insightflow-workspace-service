@@ -10,6 +10,7 @@ namespace insightflow_workspace_service.src.interfaces
     public interface IWorkspaceRepository
     {
         Task<bool> CreateWorkspaceAsync(CreateWorkspaceDTO createWorkspaceDTO);
+        Task<IEnumerable<Workspace>> GetAllWorkspacesByUserAsync(Guid userId);
         Task<IEnumerable<Workspace>> GetAllWorkspacesAsync();
     }
 }

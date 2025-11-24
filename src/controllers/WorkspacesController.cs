@@ -10,10 +10,10 @@ namespace insightflow_workspace_service.src.controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class WorkspaceController : ControllerBase
+    public class WorkspacesController : ControllerBase
     {
         private readonly IWorkspaceRepository _workspaceRepository;
-        public WorkspaceController(IWorkspaceRepository workspaceRepository)
+        public WorkspacesController(IWorkspaceRepository workspaceRepository)
         {
             _workspaceRepository = workspaceRepository;
         }
@@ -29,6 +29,12 @@ namespace insightflow_workspace_service.src.controllers
             return Ok("Workspace created successfully.");
         }
         [HttpGet("")]
+        public async Task<IActionResult> GetAllWorkspacesByUser([FromQuery] Guid userId)
+        {
+            var workspaces = await _workspaceRepository.GetAllWorkspacesByUserAsync(userId);
+            return Ok(workspaces);
+        }
+        [HttpGet("all")]
         public async Task<IActionResult> GetAllWorkspaces()
         {
             var workspaces = await _workspaceRepository.GetAllWorkspacesAsync();
