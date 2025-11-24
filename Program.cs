@@ -20,5 +20,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+// Run the application
 app.Run();
