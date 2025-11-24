@@ -32,3 +32,7 @@ C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-servic
 C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\obj\Debug\net9.0\insightflow-workspace-service.genruntimeconfig.cache
 C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\obj\Debug\net9.0\ref\insightflow-workspace-service.dll
 C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\bin\Debug\net9.0\Bogus.dll
+C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\bin\Debug\net9.0\CloudinaryDotNet.dll
+C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\bin\Debug\net9.0\DotNetEnv.dll
+C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\Alberto\Desktop\informatica\Taller 3 arqui\insightflow-workspace-service\bin\Debug\net9.0\Sprache.dll

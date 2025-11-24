@@ -1,13 +1,18 @@
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using insightflow_workspace_service.src.interfaces;
 using insightflow_workspace_service.src.models;
 
 namespace insightflow_workspace_service.src.services
 {
-    public class CloudinaryService(Cloudinary cloudinary) : ICloudinaryService
+    public class CloudinaryService : ICloudinaryService
     {
-        private readonly Cloudinary _cloudinary = cloudinary;
+        private readonly Cloudinary _cloudinary;
 
+        public CloudinaryService(Cloudinary cloudinary)
+        {
+            _cloudinary = cloudinary;
+        }
         public Task<ImageParams> UploadImageAsync(IFormFile imageFile)
         {
             if (imageFile == null)
@@ -100,9 +105,5 @@ namespace insightflow_workspace_service.src.services
 
             return result;
         }
-    }
-
-    public interface ICloudinaryService
-    {
     }
 }
