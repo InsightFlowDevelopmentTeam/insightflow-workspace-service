@@ -11,6 +11,7 @@ namespace insightflow_workspace_service.src.interfaces
     {
         Task<bool> CreateWorkspaceAsync(CreateWorkspaceDTO createWorkspaceDTO);
         Task<IEnumerable<Workspace>> GetAllWorkspacesByUserAsync(Guid userId);
+        Task<GetWorkspaceDTO> GetWorkspaceByIdAsync(Guid workspaceId);
         Task<IEnumerable<Workspace>> GetAllWorkspacesAsync();
     }
 }

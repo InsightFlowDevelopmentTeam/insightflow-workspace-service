@@ -47,6 +47,17 @@ namespace insightflow_workspace_service.src.repositories
             }
             return Task.FromResult(userWorkspaces.AsEnumerable());
         }
+        public async Task<GetWorkspaceDTO> GetWorkspaceByIdAsync(Guid workspaceId)
+        {
+            var workspace = workspaces.Find(w => w.Id == workspaceId);
+            if (workspace == null)
+            {
+                return null!;
+            }
+            var getWorkspaceDTO = WorkspaceMapper.ToGetWorkspaceDTO(workspace);
+            return getWorkspaceDTO;
+        }
+        // solo debug
         public Task<IEnumerable<Workspace>> GetAllWorkspacesAsync()
         {
             return Task.FromResult(workspaces.AsEnumerable());

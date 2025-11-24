@@ -34,6 +34,13 @@ namespace insightflow_workspace_service.src.controllers
             var workspaces = await _workspaceRepository.GetAllWorkspacesByUserAsync(userId);
             return Ok(workspaces);
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetWorkspaceById([FromRoute] Guid id)
+        {
+            var workspaces = await _workspaceRepository.GetWorkspaceByIdAsync(id);
+            return Ok(workspaces);
+        }
+        // solo debug
         [HttpGet("all")]
         public async Task<IActionResult> GetAllWorkspaces()
         {
