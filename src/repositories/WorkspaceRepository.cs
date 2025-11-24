@@ -54,16 +54,26 @@ namespace insightflow_workspace_service.src.repositories
             {
                 return null!;
             }
+            if (workspace.IsActive == false)
+            {
+                return null!;
+            }
             var getWorkspaceDTO = WorkspaceMapper.ToGetWorkspaceDTO(workspace);
             return getWorkspaceDTO;
         }
         public Task<bool> UpdateWorkspaceAsync(Guid workspaceId, UpdateWorkspaceDTO updateWorkspaceDTO)
         {
-            if (workspaces.Find(w => w.Id == workspaceId) == null || workspaces.Find(W => W.Id == workspaceId) == null)
+            var workspace = workspaces.Find(w => w.Id == workspaceId);
+
+            if (workspace == null)
             {
                 return Task.FromResult(false);
             }
-            if (workspaces.Find(w => w.Name == updateWorkspaceDTO.Name) != null)
+            if (workspace.IsActive == false)
+            {
+                return Task.FromResult(false);
+            }
+            if (workspace.Name == updateWorkspaceDTO.Name)
             {
                 return Task.FromResult(false);
             }
@@ -83,7 +93,17 @@ namespace insightflow_workspace_service.src.repositories
         }
         public Task<bool> DeleteWorkspaceAsync(Guid workspaceId)
         {
-            throw new NotImplementedException();
+            var workspace = workspaces.Find(w => w.Id == workspaceId);
+            if (workspace == null)
+            {
+                return Task.FromResult(false);
+            }
+            if (workspace.IsActive == false)
+            {
+                return Task.FromResult(false);
+            }
+            workspaces.Find(w => w.Id == workspaceId)!.IsActive = false;
+            return Task.FromResult(true);
         }
         // solo debug
         public Task<IEnumerable<Workspace>> GetAllWorkspacesAsync()
