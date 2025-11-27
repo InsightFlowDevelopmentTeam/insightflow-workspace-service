@@ -16,7 +16,55 @@ namespace insightflow_workspace_service.src.data
             var faker = new Faker("es");
             if (!workspaces.Any())
             {
-                for (int i = 0; i < 100; i++)
+                var userTest = new User
+                {
+                    Id = Guid.Parse("b3850a65-61d9-4417-8b03-de3a700d7064"),
+                    Name = "Juan Pérez",
+                    Role = "Owner"
+                };
+                var userTest2 = new User
+                {
+                    Id = Guid.Parse("afd352d5-aaae-4829-ae37-a2de588f97ab"),
+                    Name = "Manuel Herrera",
+                    Role = "Editor"
+                };
+                var testWorkspace = new Workspace
+                {
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Name = "Trabajos de taller",
+                    Description = "Espacio para compartir y colaborar en los trabajos del taller de arquitectura de sistemas.",
+                    Topic = "Arquitectura de sistemas",
+                    ImageUrl = "https://picsum.photos/640/480/?image=726",
+                    Users = new List<User> { userTest, userTest2 },
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
+                var testWorkspace2 = new Workspace
+                {
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Name = "Librería de recursos",
+                    Description = "Espacio para almacenar y compartir recursos relacionados con la arquitectura de sistemas.",
+                    Topic = "Arquitectura de sistemas",
+                    ImageUrl = "https://picsum.photos/640/480/?image=726",
+                    Users = new List<User> { userTest, userTest2 },
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
+                var testWorkspace3 = new Workspace
+                {
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Name = "Proyectos colaborativos",
+                    Description = "Espacio para gestionar proyectos colaborativos en el ámbito de la arquitectura de sistemas.",
+                    Topic = "Arquitectura de sistemas",
+                    ImageUrl = "https://picsum.photos/640/480/?image=726",
+                    Users = new List<User> { userTest, userTest2 },
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
+                workspaces.Add(testWorkspace);
+                workspaces.Add(testWorkspace2);
+                workspaces.Add(testWorkspace3);
+                for (int i = 0; i < 10; i++)
                 {
                     var workspace = new Workspace
                     {

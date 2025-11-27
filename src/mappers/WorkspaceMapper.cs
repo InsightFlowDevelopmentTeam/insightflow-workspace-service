@@ -38,5 +38,21 @@ namespace insightflow_workspace_service.src.mappers
                 CreatedAt = workspace.CreatedAt
             };
         }
+        public static List<GetByUserId> ToGetByUserIdList(List<Workspace> workspaces)
+        {
+            var result = new List<GetByUserId>();
+            foreach (var workspace in workspaces)
+            {
+                var dto = new GetByUserId
+                {
+                    Id = workspace.Id,
+                    Name = workspace.Name,
+                    ImageUrl = workspace.ImageUrl,
+                    UserRole = workspace.Users.FirstOrDefault()?.Role ?? string.Empty
+                };
+                result.Add(dto);
+            }
+            return result;
+        }
     }
 }

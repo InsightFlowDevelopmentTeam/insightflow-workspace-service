@@ -32,7 +32,7 @@ namespace insightflow_workspace_service.src.repositories
             workspaces.Add(newWorkspace);
             return Task.FromResult(true);
         }
-        public Task<IEnumerable<Workspace>> GetAllWorkspacesByUserAsync(Guid userId)
+        public Task<IEnumerable<GetByUserId>> GetAllWorkspacesByUserAsync(Guid userId)
         {
             var userWorkspaces = new List<Workspace>();
             foreach (var workspace in workspaces)
@@ -45,7 +45,8 @@ namespace insightflow_workspace_service.src.repositories
                     }
                 }
             }
-            return Task.FromResult(userWorkspaces.AsEnumerable());
+            List<GetByUserId> result = WorkspaceMapper.ToGetByUserIdList(userWorkspaces);
+            return Task.FromResult(result.AsEnumerable());
         }
         public async Task<GetWorkspaceDTO> GetWorkspaceByIdAsync(Guid workspaceId)
         {
