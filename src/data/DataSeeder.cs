@@ -41,7 +41,7 @@ namespace insightflow_workspace_service.src.data
                 };
                 var testWorkspace2 = new Workspace
                 {
-                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1a"),
                     Name = "Librería de recursos",
                     Description = "Espacio para almacenar y compartir recursos relacionados con la arquitectura de sistemas.",
                     Topic = "Arquitectura de sistemas",
@@ -52,7 +52,7 @@ namespace insightflow_workspace_service.src.data
                 };
                 var testWorkspace3 = new Workspace
                 {
-                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1c"),
                     Name = "Proyectos colaborativos",
                     Description = "Espacio para gestionar proyectos colaborativos en el ámbito de la arquitectura de sistemas.",
                     Topic = "Arquitectura de sistemas",
