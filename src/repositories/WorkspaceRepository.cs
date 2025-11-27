@@ -39,7 +39,7 @@ namespace insightflow_workspace_service.src.repositories
             {
                 foreach (var user in workspace.Users)
                 {
-                    if (userId == user.Id)
+                    if (userId == user.Id && workspace.IsActive)
                     {
                         userWorkspaces.Add(workspace);
                     }
