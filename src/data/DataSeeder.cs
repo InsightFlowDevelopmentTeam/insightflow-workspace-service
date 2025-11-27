@@ -39,8 +39,32 @@ namespace insightflow_workspace_service.src.data
                     CreatedAt = DateTime.Now,
                     IsActive = true
                 };
+                var testWorkspace2 = new Workspace
+                {
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Name = "Librería de recursos",
+                    Description = "Espacio para almacenar y compartir recursos relacionados con la arquitectura de sistemas.",
+                    Topic = "Arquitectura de sistemas",
+                    ImageUrl = "https://picsum.photos/640/480/?image=726",
+                    Users = new List<User> { userTest, userTest2 },
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
+                var testWorkspace3 = new Workspace
+                {
+                    Id = Guid.Parse("d3a1d94c-1f3e-445f-8412-7209c7c2af1b"),
+                    Name = "Proyectos colaborativos",
+                    Description = "Espacio para gestionar proyectos colaborativos en el ámbito de la arquitectura de sistemas.",
+                    Topic = "Arquitectura de sistemas",
+                    ImageUrl = "https://picsum.photos/640/480/?image=726",
+                    Users = new List<User> { userTest, userTest2 },
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
                 workspaces.Add(testWorkspace);
-                for (int i = 0; i < 20; i++)
+                workspaces.Add(testWorkspace2);
+                workspaces.Add(testWorkspace3);
+                for (int i = 0; i < 10; i++)
                 {
                     var workspace = new Workspace
                     {
