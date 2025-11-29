@@ -7,15 +7,28 @@ using insightflow_workspace_service.src.models;
 
 namespace insightflow_workspace_service.src.data
 {
+    /// <summary>
+    /// Clase para inicializar datos de prueba en el contexto de datos.
+    /// </summary>
     public class DataSeeder
     {
+        /// <summary>
+        /// Inicializa los datos de prueba en el contexto de datos.
+        /// </summary>
+        /// <param name="ServiceProvider"></param>
+        /// <returns></returns>
         public static async Task InitializeAsync(IServiceProvider ServiceProvider)
         {
+            // Crear un scope para obtener servicios si es necesario
             using var scope = ServiceProvider.CreateScope();
+            // Obtener el contexto de datos
             List<Workspace> workspaces = DataContext.Workspaces;
+            // Configurar Bogus para generar datos falsos en español
             var faker = new Faker("es");
+            // Verificar si ya existen workspaces
             if (!workspaces.Any())
             {
+                // Crear algunos workspaces de prueba fijos
                 var userTest = new User
                 {
                     Id = Guid.Parse("b3850a65-61d9-4417-8b03-de3a700d7064"),
@@ -61,9 +74,11 @@ namespace insightflow_workspace_service.src.data
                     CreatedAt = DateTime.Now,
                     IsActive = true
                 };
+                // Agregar los workspaces de prueba a la lista
                 workspaces.Add(testWorkspace);
                 workspaces.Add(testWorkspace2);
                 workspaces.Add(testWorkspace3);
+                // Crear workspaces adicionales de prueba generados aleatoriamente
                 for (int i = 0; i < 10; i++)
                 {
                     var workspace = new Workspace
@@ -76,9 +91,11 @@ namespace insightflow_workspace_service.src.data
                         CreatedAt = faker.Date.Past(),
                         IsActive = true
                     };
-
+                    // Generar entre 1 y 5 usuarios por workspace
                     int userCount = faker.Random.Int(1, 5);
+                    // Agregar roles de usuarios al workspace
                     var roles = new[] { "Owner", "Editor" };
+                    // Crear y agregar usuarios al workspace
                     for (int j = 0; j < userCount; j++)
                     {
                         var user = new User
@@ -89,6 +106,7 @@ namespace insightflow_workspace_service.src.data
                         };
                         workspace.Users.Add(user);
                     }
+                    // Agregar el workspace generado a la lista
                     workspaces.Add(workspace);
                 }
             }

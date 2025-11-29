@@ -6,10 +6,12 @@ using insightflow_workspace_service.src.models;
 
 namespace insightflow_workspace_service.src.interfaces
 {
+    /// <summary>
+    /// Interfaz para el servicio de Cloudinary.
+    /// </summary>
     public interface ICloudinaryService
     {
+        // Subir una imagen a Cloudinary
         Task<ImageParams> UploadImageAsync(IFormFile imageFile);
-        Task<bool> DeleteImageAsync(string publicId);
-        Task<Dictionary<string, bool>> DeleteImagesAsync(IEnumerable<string> publicIds);
     }
 }

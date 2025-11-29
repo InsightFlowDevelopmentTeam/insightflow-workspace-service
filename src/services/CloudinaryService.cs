@@ -5,16 +5,30 @@ using insightflow_workspace_service.src.models;
 
 namespace insightflow_workspace_service.src.services
 {
+    /// <summary>
+    /// Servicio para manejar operaciones con Cloudinary.
+    /// </summary>
     public class CloudinaryService : ICloudinaryService
     {
+        // Instancia de Cloudinary
         private readonly Cloudinary _cloudinary;
-
+        /// <summary>
+        /// Constructor del servicio Cloudinary.
+        /// </summary>
+        /// <param name="cloudinary"></param>
         public CloudinaryService(Cloudinary cloudinary)
         {
             _cloudinary = cloudinary;
         }
+        /// <summary>
+        /// Sube una imagen a Cloudinary.
+        /// </summary>
+        /// <param name="imageFile"></param>
+        /// <returns>Una tarea que representa la operación asincrónica y contiene los parámetros de la imagen subida</returns>
+        /// <exception cref="Exception"></exception>
         public Task<ImageParams> UploadImageAsync(IFormFile imageFile)
         {
+            // Validar que el archivo no sea nulo
             if (imageFile == null)
             {
                 throw new Exception("El archivo de imagen no puede ser nulo");
@@ -29,29 +43,28 @@ namespace insightflow_workspace_service.src.services
             {
                 throw new Exception("La imagen debe ser un PNG, JPG, JPEG o WEBP");
             }
-
             // Validar tamaño
             if (imageFile.Length > 5 * 1024 * 1024)
             {
                 throw new Exception("El tamaño de la imagen no puede exceder 5 MB");
             }
-
+            // Configurar parámetros de subida
             ImageUploadParams uploadParams =
                 new()
                 {
                     File = new FileDescription(imageFile.FileName, imageFile.OpenReadStream()),
                     Folder = "insightflow/workspaces"
                 };
-
+            // Subir la imagen
             ImageUploadResult uploadResult = _cloudinary.Upload(uploadParams);
-
+            // Manejar errores de subida
             if (uploadResult.Error != null)
             {
                 throw new Exception(
                     "Error al subir la imagen: " + uploadResult.Error.Message
                 );
             }
-
+            // Retornar los parámetros de la imagen subida
             ImageParams imageParams =
                 new()
                 {
@@ -64,46 +77,6 @@ namespace insightflow_workspace_service.src.services
                     Bytes = uploadResult.Bytes
                 };
             return Task.FromResult(imageParams);
-        }
-
-        public async Task<bool> DeleteImageAsync(string publicId)
-        {
-            if (string.IsNullOrEmpty(publicId))
-            {
-                throw new Exception(
-                    "Public ID es requerido para eliminar la imagen"
-                );
-            }
-
-            DeletionParams deletionParams = new(publicId);
-            DeletionResult deletionResult = await _cloudinary.DestroyAsync(deletionParams);
-
-            return deletionResult.Result == "ok";
-        }
-
-        public async Task<Dictionary<string, bool>> DeleteImagesAsync(IEnumerable<string> publicIds)
-        {
-            List<string> publicIdList = [.. publicIds];
-            if (publicIdList.Count == 0)
-            {
-                return [];
-            }
-
-            DelResParams deletionParams = new() { PublicIds = publicIdList };
-
-            DelResResult deletionResult = await _cloudinary.DeleteResourcesAsync(deletionParams);
-
-            Dictionary<string, bool> result = [];
-
-            // Cloudinary devuelve un diccionario con los resultados
-            foreach (string publicId in publicIdList)
-            {
-                result[publicId] =
-                    deletionResult.Deleted.ContainsKey(publicId)
-                    && deletionResult.Deleted[publicId] == "deleted";
-            }
-
-            return result;
         }
     }
 }
