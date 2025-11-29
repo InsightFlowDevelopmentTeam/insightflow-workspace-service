@@ -46,6 +46,7 @@ dotnet run
 
 ## Estructura del repositorio
 - Funciona con una API de tipo REST
+- Utiliza un pipeline de CI/CD que construye una imagen en docker, lo envía a docker hub y realiza despliegue automático en render
 - Se ofrece una colección en la carpeta de Workspace de Postman en el repositorio
 - Se ofrece un .env de con datos de ejemplo
 - Se utiliza el Framework .NET de C#
