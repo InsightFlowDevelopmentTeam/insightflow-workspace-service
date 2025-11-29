@@ -25,7 +25,7 @@ git clone https://github.com/InsightFlowDevelopmentTeam/insightflow-workspace-se
 ```
 5.- Accedemos a la carpeta creada por el repositorio:
 ```bash
-cd insightlow-workspace-service
+cd insightflow-workspace-service
 ```
 6.- Ahora debemos restaurar las dependencias del proyecto con el siguiente comando:
 ```bash
