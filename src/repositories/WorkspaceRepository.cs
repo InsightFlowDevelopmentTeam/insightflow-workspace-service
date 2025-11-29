@@ -74,9 +74,12 @@ namespace insightflow_workspace_service.src.repositories
             {
                 return Task.FromResult(false);
             }
-            if (workspace.Name == updateWorkspaceDTO.Name)
+            foreach (var w in workspaces)
             {
-                return Task.FromResult(false);
+                if (w.Name.Equals(updateWorkspaceDTO.Name) && w.Id != workspaceId)
+                {
+                    return Task.FromResult(false);
+                }
             }
             var url = workspaces.Find(w => w.Id == workspaceId)!.ImageUrl;
             if (updateWorkspaceDTO.Image != null)
