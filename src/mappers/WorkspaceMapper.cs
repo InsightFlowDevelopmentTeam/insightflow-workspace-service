@@ -61,8 +61,9 @@ namespace insightflow_workspace_service.src.mappers
         /// Convierte una lista de Workspace a una lista de GetByUserId.
         /// </summary>
         /// <param name="workspaces"></param>
+        /// <param name="userId"></param>
         /// <returns> Lista de GetByUserId </returns>
-        public static List<GetByUserId> ToGetByUserIdList(List<Workspace> workspaces)
+        public static List<GetByUserId> ToGetByUserIdList(List<Workspace> workspaces, Guid userId)
         {
             // Mapear cada workspace al DTO correspondiente
             var result = new List<GetByUserId>();
@@ -73,7 +74,7 @@ namespace insightflow_workspace_service.src.mappers
                     Id = workspace.Id,
                     Name = workspace.Name,
                     ImageUrl = workspace.ImageUrl,
-                    UserRole = workspace.Users.FirstOrDefault()?.Role ?? string.Empty
+                    UserRole = workspace.Users.FirstOrDefault(u => u.Id == userId)?.Role ?? string.Empty
                 };
                 result.Add(dto);
             }

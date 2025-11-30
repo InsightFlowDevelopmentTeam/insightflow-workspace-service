@@ -70,7 +70,7 @@ namespace insightflow_workspace_service.src.repositories
                 }
             }
             // Mapear los workspaces a DTOs y retornarlos
-            List<GetByUserId> result = WorkspaceMapper.ToGetByUserIdList(userWorkspaces);
+            List<GetByUserId> result = WorkspaceMapper.ToGetByUserIdList(userWorkspaces, userId);
             return Task.FromResult(result.AsEnumerable());
         }
         /// <summary>
