@@ -31,31 +31,31 @@ namespace insightflow_workspace_service.src.data
                 // Crear algunos workspaces de prueba fijos
                 var userTest1Owner = new User
                 {
-                    Id = Guid.Parse("cff73587-b2d5-4c98-9790-8b328ce0fb73"),
+                    Id = Guid.Parse("a08799f8-746f-46b4-8134-2ef211fe705a"),
                     Name = "Carlos Arauco Colque",
                     Role = "Owner"
                 };
                 var userTest1Editor = new User
                 {
-                    Id = Guid.Parse("cff73587-b2d5-4c98-9790-8b328ce0fb73"),
+                    Id = Guid.Parse("a08799f8-746f-46b4-8134-2ef211fe705a"),
                     Name = "Carlos Arauco Colque",
                     Role = "Editor"
                 };
                 var userTest2 = new User
                 {
-                    Id = Guid.Parse("afd352d5-aaae-4829-ae37-a2de588f97ab"),
+                    Id = Guid.Parse("9fd8ec52-3aa4-4097-86fa-2c576bc06e01"),
                     Name = "Jhon Vallecilla",
                     Role = "Editor"
                 };
                 var userTest3Owner = new User
                 {
-                    Id = Guid.Parse("8f1bb7d6-59b9-436b-aa17-fa815ccf6926"),
+                    Id = Guid.Parse("2db519ca-4836-4e01-977f-ec518a081d54"),
                     Name = "Raul Hidalgo",
                     Role = "Owner"
                 };
                 var userTest3Editor = new User
                 {
-                    Id = Guid.Parse("8f1bb7d6-59b9-436b-aa17-fa815ccf6926"),
+                    Id = Guid.Parse("2db519ca-4836-4e01-977f-ec518a081d54"),
                     Name = "Raul Hidalgo",
                     Role = "Editor"
                 };
